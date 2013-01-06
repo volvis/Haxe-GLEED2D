@@ -1,8 +1,8 @@
 Haxe-GLEED2D
 ============
 
-Class structure for reading GLEED2D (Generic Level Editor 2D) XML files.
-https://gleed2d.codeplex.com/
+Class structure for reading GLEED2D (Generic Level Editor 2D) XML files. (https://gleed2d.codeplex.com/)
 
-Currently does not support the tint attributes.
-Properties have only been tested with <code>string</code> and <code>item</code> values.
+Currently only <code>item</code> and <code>string</code> properties are supported. All others may not work or might raise an error.
+
+Only texture items are supported. Vector shapes throw an error.

@@ -68,6 +68,10 @@ class Gleed2DUtilities {
 		target.scaleHeight		= Std.parseFloat(source.node.Scale.node.Y.innerData);
 		target.scaleWidth		= Std.parseFloat(source.node.Scale.node.X.innerData);
 		target.textureFilename	= source.node.texture_filename.innerData;
+		target.tintColorAlpha	= Std.parseInt(source.node.TintColor.node.A.innerData);
+		target.tintColorRed		= Std.parseInt(source.node.TintColor.node.R.innerData);
+		target.tintColorGreen	= Std.parseInt(source.node.TintColor.node.G.innerData);
+		target.tintColorBlue	= Std.parseInt(source.node.TintColor.node.B.innerData);
 	}
 	
 	public static inline function readNameVisibility(source:Fast, target:Gleed2DBasic):Void {
@@ -95,6 +99,10 @@ private class Gleed2DItemImpl implements Gleed2DItem, implements Gleed2DEntity, 
 	public var textureFilename:String;
 	public var assetName:String;
 	public var properties:Hash<Gleed2DProperty>;
+	public var tintColorAlpha:Int;
+	public var tintColorBlue:Int;
+	public var tintColorGreen:Int;
+	public var tintColorRed:Int;
 }
 
 
