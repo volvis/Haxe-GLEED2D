@@ -14,7 +14,7 @@ interface G2DLayer implements G2DBasic
 	var items:Array<G2DItem>;
 	
 	/**
-	 * Scrollspeed
+	 * Scrollspeed for layer
 	 */
 	var scroll:G2DPoint;
 

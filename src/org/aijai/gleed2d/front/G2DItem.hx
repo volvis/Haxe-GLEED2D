@@ -1,7 +1,7 @@
 package org.aijai.gleed2d.front;
 
 /**
- * Single graphic item
+ * Single item within layer
  * @author Pekka Heikkinen
  */
 
@@ -18,22 +18,28 @@ interface G2DItem implements G2DEntity {
 	var flipHorizontal:Bool;
 	
 	/**
-	 * Flipped along Y axisG
+	 * Flipped along Y axis
 	 */
 	var flipVertical:Bool;
 	
+	/**
+	 * Origin (center) of the item
+	 */
 	var origin:G2DPoint;
 	
+	/**
+	 * Position of the item
+	 */
 	var position:G2DPoint;
 	
 	/**
-	 * Item rotation in radians. (180 / Math.PI * rad)
+	 * Item rotation in radians. (180 / Math.PI * rad) to convert into degrees
 	 */
 	var rotation:Float;
 	
 	
 	/**
-	 * Horizontal scale (0.0 - 1.0)
+	 * Scale (0.0 - 1.0)
 	 */
 	var scale:G2DPoint;
 	
@@ -42,10 +48,14 @@ interface G2DItem implements G2DEntity {
 	 */
 	var textureFilename:String;
 	
+	/**
+	 * Color tint
+	 */
 	var tint:G2DColor;
 	
 	/**
-	 * Currently not supported due to namespace limitations
+	 * Whether item is a TextureItem, RectangleItem, CircleItem or PathItem.
+	 * Only TextureItem is supported at the moment.
 	 */
 	var type:G2DItemType;
 	

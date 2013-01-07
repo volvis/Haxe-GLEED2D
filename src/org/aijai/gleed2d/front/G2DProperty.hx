@@ -1,7 +1,7 @@
 package org.aijai.gleed2d.front;
 
 /**
- * Gleed2D Property element
+ * Custom set property element
  * @author Pekka Heikkinen
  */
 

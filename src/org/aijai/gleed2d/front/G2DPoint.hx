@@ -1,7 +1,7 @@
 package org.aijai.gleed2d.front;
 
 /**
- * ...
+ * Generic X/Y coordinate
  * @author Pekka Heikkinen
  */
 

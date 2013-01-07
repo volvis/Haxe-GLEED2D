@@ -1,7 +1,7 @@
 package org.aijai.gleed2d.front;
 
 /**
- * ...
+ * Color data
  * @author Pekka Heikkinen
  */
 
