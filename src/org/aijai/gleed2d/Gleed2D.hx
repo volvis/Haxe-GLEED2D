@@ -94,7 +94,7 @@ private class Gleed2DBuilder {
 		}
 	}
 	
-	public static inline function buildLayers(source:Fast, target:G2DLevel):Void {
+	public static function buildLayers(source:Fast, target:G2DLevel):Void {
 		target.layers = new Array<G2DLayer>();
 		for ( layer in source.node.Layers.nodes.Layer ) {
 			var newLayer:G2DLayer = new G2DLayerImpl();
@@ -105,7 +105,7 @@ private class Gleed2DBuilder {
 		}
 	}
 	
-	public static inline function buildItems(source:Fast, target:G2DLayer):Void {
+	public static function buildItems(source:Fast, target:G2DLayer):Void {
 		target.items = new Array<G2DItem>();
 		for ( item in source.node.Items.nodes.Item ) {
 			// Support only texture items for now
@@ -115,7 +115,7 @@ private class Gleed2DBuilder {
 		}
 	}
 	
-	public static inline function createTextureItem(source:Fast):G2DItem {
+	public static function createTextureItem(source:Fast):G2DItem {
 		var i:G2DItem = new G2DItemImpl();
 		buildEntity(source, i);
 		buildBasic(source, i);
@@ -131,14 +131,14 @@ private class Gleed2DBuilder {
 		return i;
 	}
 	
-	public static inline function createPoint(source:Fast):G2DPoint {
+	public static function createPoint(source:Fast):G2DPoint {
 		var p:G2DPoint = new G2DPointImpl();
 		p.x = Std.parseFloat(source.node.X.innerData);
 		p.y = Std.parseFloat(source.node.Y.innerData);
 		return p;
 	}
 	
-	public static inline function createColor(source:Fast):G2DColor {
+	public static function createColor(source:Fast):G2DColor {
 		var c:G2DColor = new G2DColorImpl();
 		c.red	= Std.parseInt(source.node.R.innerData);
 		c.green	= Std.parseInt(source.node.G.innerData);

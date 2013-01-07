@@ -1,8 +1,11 @@
 Haxe-GLEED2D
 ============
 
-Class structure for reading GLEED2D (Generic Level Editor 2D) XML files. (https://gleed2d.codeplex.com/)
+Class structure for reading GLEED2D files. (https://gleed2d.codeplex.com/)
 
-Currently only <code>item</code> and <code>string</code> properties are supported. All others may not work or might raise an error.
+<code>import org.aijai.gleed2d.front.G2DLevel;
+import org.aijai.gleed2d.Gleed2D;
 
-Only texture items are supported. Vector shapes throw an error.
+var g:G2DLevel = new Gleed2D(xmlString);</code>
+
+At this point only texture items are supported. No data is read from geometric types, eg. rectangle, sphere and polygon.
