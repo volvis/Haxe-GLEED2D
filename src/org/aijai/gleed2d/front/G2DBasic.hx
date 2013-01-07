@@ -1,19 +1,25 @@
-package org.aijai.gleed2d;
+package org.aijai.gleed2d.front;
 
 /**
  * Common properties for Gleed2D elements
  * @author Pekka Heikkinen
  */
 
-interface Gleed2DBasic 
+interface G2DBasic 
 {
 	/**
-	 * Name of the element
+	 * Name of the entity
 	 */
 	var name:String;
 	
 	/**
-	 * Element visibility
+	 * Visibility true/false
 	 */
 	var visible:Bool;
+	
 }
+
+
+
+
+
