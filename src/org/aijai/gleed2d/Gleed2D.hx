@@ -36,18 +36,26 @@ class Gleed2D implements G2DLevel
 	 */
 	public var layers:Array<G2DLayer>;
 	
+	
+	public function new() {}
+	
 	/**
 	 * Parse Gleed2D file
 	 * @param	source	File contents in plain string format
 	 */
-	public function new(source:String) 
+	public function init(source:String):Bool
 	{
 		source = StringTools.replace(source, "xsi:type", "Type");
 		var fast:Fast = new Fast(Xml.parse(source).firstElement());
 		Gleed2DBuilder.buildLevel(fast, this);
+		return true;
 	}
 	
 }
+
+
+
+
 
 
 private class Gleed2DBuilder {
@@ -132,34 +140,20 @@ private class Gleed2DBuilder {
 	}
 	
 	public static function createPoint(source:Fast):G2DPoint {
-		var p:G2DPoint = new G2DPointImpl();
-		p.x = Std.parseFloat(source.node.X.innerData);
-		p.y = Std.parseFloat(source.node.Y.innerData);
-		return p;
+		return {
+			x:Std.parseFloat(source.node.X.innerData),
+			y:Std.parseFloat(source.node.Y.innerData)
+		};
 	}
 	
 	public static function createColor(source:Fast):G2DColor {
-		var c:G2DColor = new G2DColorImpl();
-		c.red	= Std.parseInt(source.node.R.innerData);
-		c.green	= Std.parseInt(source.node.G.innerData);
-		c.blue	= Std.parseInt(source.node.B.innerData);
-		c.alpha	= Std.parseInt(source.node.A.innerData);
-		return c;
+		return {
+			red: Std.parseInt(source.node.R.innerData),
+			green: Std.parseInt(source.node.G.innerData),
+			blue: Std.parseInt(source.node.B.innerData),
+			alpha: Std.parseInt(source.node.A.innerData)
+		}
 	}
-}
-
-private class G2DPointImpl implements G2DPoint {
-	public function new() {}
-	public var x:Float;
-	public var y:Float;
-}
-
-private class G2DColorImpl implements G2DColor {
-	public function new() {}
-	public var red:Int;
-	public var green:Int;
-	public var blue:Int;
-	public var alpha:Int;
 }
 
 private class G2DItemImpl implements G2DItem {
@@ -179,7 +173,6 @@ private class G2DItemImpl implements G2DItem {
 	public var tint:G2DColor;
 }
 
-
 private class G2DLayerImpl implements G2DLayer {
 	public function new() {}
 	public var name:String;
@@ -187,8 +180,6 @@ private class G2DLayerImpl implements G2DLayer {
 	public var items:Array<G2DItem>;
 	public var scroll:G2DPoint;
 }
-
-
 
 private class G2DPropertyImpl implements G2DProperty {
 	public function new() {}
