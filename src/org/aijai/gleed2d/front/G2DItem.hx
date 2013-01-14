@@ -53,6 +53,13 @@ interface G2DItem implements G2DEntity {
 	 */
 	var tint:G2DColor;
 	
+	var pathItem:Array<G2DPoint>;
+	
+	var radius:Float;
+	
+	var width:Int;
+	var height:Int;
+	
 	/**
 	 * Whether item is a TextureItem, RectangleItem, CircleItem or PathItem.
 	 * Only TextureItem is supported at the moment.

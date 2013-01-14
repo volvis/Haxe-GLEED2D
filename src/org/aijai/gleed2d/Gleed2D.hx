@@ -116,27 +116,73 @@ private class Gleed2DBuilder {
 	public static function buildItems(source:Fast, target:G2DLayer):Void {
 		target.items = new Array<G2DItem>();
 		for ( item in source.node.Items.nodes.Item ) {
+			var i:G2DItem = new G2DItemImpl();
 			// Support only texture items for now
 			if (item.att.Type == "TextureItem") {
-				target.items.push(createTextureItem(item));
+				buildTextureItem(item, i);
 			}
+			switch(item.att.Type) {
+				case "TextureItem":
+					buildTextureItem(item, i);
+				case "PathItem":
+					buildPathItem(item, i);
+				case "CircleItem":
+					buildCircleItem(item, i);
+				case "RectangleItem":
+					buildRectangleItem(item, i);
+			}
+			target.items.push(i);
 		}
 	}
 	
-	public static function createTextureItem(source:Fast):G2DItem {
-		var i:G2DItem = new G2DItemImpl();
+	public static function buildItem(source:Fast, target:G2DItem):G2DItem {
+		target.position		= createPoint(source.node.Position);
+		return target;
+	}
+	
+	public static function buildTextureItem(source:Fast, i:G2DItem):G2DItem {
+		//var i:G2DItem = new G2DItemImpl();
 		buildEntity(source, i);
 		buildBasic(source, i);
+		buildItem(source, i);
 		i.assetName			= source.node.asset_name.innerData;
 		i.flipHorizontal	= (source.node.FlipHorizontally.innerData == "true") ? true : false;
 		i.flipVertical		= (source.node.FlipVertically.innerData == "true") ? true : false;
 		i.origin			= createPoint(source.node.Origin);
-		i.position			= createPoint(source.node.Position);
 		i.rotation			= Std.parseFloat(source.node.Rotation.innerData);
 		i.scale				= createPoint(source.node.Scale);
 		i.textureFilename	= source.node.texture_filename.innerData;
 		i.tint				= createColor(source.node.TintColor);
+		i.type				= G2DItemType.TextureItem;
 		return i;
+	}
+	
+	public static function buildPathItem(source:Fast, target:G2DItem):Void {
+		buildEntity(source, target);
+		buildBasic(source, target);
+		buildItem(source, target);
+		target.pathItem = new Array<G2DPoint>();
+		for (v in source.node.LocalPoints.nodes.Vector2) {
+			target.pathItem.push(createPoint(v));
+		}
+		target.type			= G2DItemType.PathItem;
+	}
+	
+	public static function buildCircleItem(source:Fast, target:G2DItem):Void {
+		buildEntity(source, target);
+		buildBasic(source, target);
+		buildItem(source, target);
+		target.radius		= Std.parseFloat(source.node.Radius.innerData);
+		target.type			= G2DItemType.CircleItem;
+	}
+	
+	public static function buildRectangleItem(source:Fast, target:G2DItem):Void {
+		buildEntity(source, target);
+		buildBasic(source, target);
+		buildItem(source, target);
+		target.width		= Std.parseInt(source.node.Width.innerData);
+		target.height		= Std.parseInt(source.node.Height.innerData);
+		target.type			= G2DItemType.RectangleItem;
 	}
 	
 	public static function createPoint(source:Fast):G2DPoint {
@@ -171,6 +217,10 @@ private class G2DItemImpl implements G2DItem {
 	public var assetName:String;
 	public var properties:Array<G2DProperty>;
 	public var tint:G2DColor;
+	public var pathItem:Array<G2DPoint>;
+	public var radius:Float;
+	public var width:Int;
+	public var height:Int;
 }
 
 private class G2DLayerImpl implements G2DLayer {
