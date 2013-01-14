@@ -58,6 +58,7 @@ interface G2DItem implements G2DEntity {
 	var radius:Float;
 	
 	var width:Int;
+	
 	var height:Int;
 	
 	/**

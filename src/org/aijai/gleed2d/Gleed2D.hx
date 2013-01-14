@@ -162,6 +162,7 @@ private class Gleed2DBuilder {
 		buildBasic(source, target);
 		buildItem(source, target);
 		target.pathItem = new Array<G2DPoint>();
+		target.tint			= createColor(source.node.LineColor);
 		for (v in source.node.LocalPoints.nodes.Vector2) {
 			target.pathItem.push(createPoint(v));
 		}
@@ -172,6 +173,7 @@ private class Gleed2DBuilder {
 		buildEntity(source, target);
 		buildBasic(source, target);
 		buildItem(source, target);
+		target.tint			= createColor(source.node.FillColor);
 		target.radius		= Std.parseFloat(source.node.Radius.innerData);
 		target.type			= G2DItemType.CircleItem;
 	}
@@ -180,6 +182,7 @@ private class Gleed2DBuilder {
 		buildEntity(source, target);
 		buildBasic(source, target);
 		buildItem(source, target);
+		target.tint			= createColor(source.node.FillColor);
 		target.width		= Std.parseInt(source.node.Width.innerData);
 		target.height		= Std.parseInt(source.node.Height.innerData);
 		target.type			= G2DItemType.RectangleItem;
